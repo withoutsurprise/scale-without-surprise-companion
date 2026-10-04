@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title description">
+<title id="title">The return date leaves a gap</title><desc id="description">The modeled web service supplies 12000 requests/s after one failure group is lost, rising to 13500 when the transfer is ready on day 2. Its 30-day agreement expires at day 32. New supply is only estimated for day 42, when degraded capacity would reach 16000. Bridging the ten-day gap needs another agreement.</desc>
+<rect width="1000" height="620" fill="white"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#111">
+<text x="50.0" y="52.0" font-size="32" text-anchor="start" font-weight="bold">The return date leaves a gap</text>
+<text x="50.0" y="91.0" font-size="26" text-anchor="start" font-weight="normal">Capacity after one failure group is lost; requests/s</text>
+<line x1="110.0" y1="434.0" x2="935.0" y2="434.0" stroke="#d2d2d2" stroke-width="1"/>
+<text x="97.0" y="442.0" font-size="26" text-anchor="end" font-weight="normal">10k</text>
+<line x1="110.0" y1="355.1" x2="935.0" y2="355.1" stroke="#d2d2d2" stroke-width="1"/>
+<text x="97.0" y="363.1" font-size="26" text-anchor="end" font-weight="normal">12k</text>
+<line x1="110.0" y1="276.3" x2="935.0" y2="276.3" stroke="#d2d2d2" stroke-width="1"/>
+<text x="97.0" y="284.3" font-size="26" text-anchor="end" font-weight="normal">14k</text>
+<line x1="110.0" y1="197.4" x2="935.0" y2="197.4" stroke="#d2d2d2" stroke-width="1"/>
+<text x="97.0" y="205.4" font-size="26" text-anchor="end" font-weight="normal">16k</text>
+<line x1="110.0" y1="434.0" x2="110.0" y2="442.0" stroke="#222" stroke-width="2"/>
+<text x="110.0" y="473.0" font-size="26" text-anchor="middle" font-weight="normal">0</text>
+<line x1="487.1" y1="434.0" x2="487.1" y2="442.0" stroke="#222" stroke-width="2"/>
+<text x="487.1" y="473.0" font-size="26" text-anchor="middle" font-weight="normal">32</text>
+<line x1="605.0" y1="434.0" x2="605.0" y2="442.0" stroke="#222" stroke-width="2"/>
+<text x="605.0" y="473.0" font-size="26" text-anchor="middle" font-weight="normal">42</text>
+<line x1="935.0" y1="434.0" x2="935.0" y2="442.0" stroke="#222" stroke-width="2"/>
+<text x="935.0" y="473.0" font-size="26" text-anchor="middle" font-weight="normal">70</text>
+<text x="520.0" y="512.0" font-size="26" text-anchor="middle" font-weight="normal">Days after the planning decision</text>
+<polyline points="110.0,355.1 133.6,355.1 133.6,296.0 487.1,296.0 487.1,355.1 605.0,355.1" fill="none" stroke="#111" stroke-width="5"/>
+<line x1="605.0" y1="355.1" x2="605.0" y2="197.4" stroke="#111" stroke-width="5" stroke-dasharray="10 7"/>
+<line x1="605.0" y1="197.4" x2="935.0" y2="197.4" stroke="#111" stroke-width="5" stroke-dasharray="10 7"/>
+<line x1="487.1" y1="296.0" x2="605.0" y2="296.0" stroke="#777" stroke-width="5" stroke-dasharray="3 6"/>
+<text x="205.0" y="277.0" font-size="27" text-anchor="start" font-weight="normal">13,500</text>
+<text x="665.0" y="180.4" font-size="27" text-anchor="start" font-weight="normal">16,000</text>
+<text x="546.1" y="393.1" font-size="26" text-anchor="middle" font-weight="normal">10 days</text>
+<text x="155.0" y="137.0" font-size="26" text-anchor="start" font-weight="normal">Transfer ready on day 2</text>
+<text x="665.0" y="263.0" font-size="26" text-anchor="start" font-weight="normal">New group</text>
+<text x="665.0" y="295.0" font-size="26" text-anchor="start" font-weight="normal">estimated day 42</text>
+<text x="500.0" y="557.0" font-size="26" text-anchor="middle" font-weight="normal">Dotted bridge: extension requires a new agreement.</text>
+<text x="500.0" y="594.0" font-size="26" text-anchor="middle" font-weight="normal">Without extension, capacity returns to 12,000 on day 32.</text>
+</g></svg>

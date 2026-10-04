@@ -1,0 +1,6 @@
+owner,action,due
+Product lead,Stage the rollout at the assumed 2000 additional requests/s and keep the ability to stop expansion.,before rollout
+Batch product owner,Approve a bounded deferral and catch-up plan before transferring eight workers.,before transfer
+Web operations lead,Qualify transferred capacity and failure behavior before treating it as available.,before rollout
+Budget owner,Authorize the additional 640 dollars/day contingent on supply and actual commercial terms.,before purchase commitment
+Responsible business executive,Accept residual exposure or change launch scope/deadline; resolve disagreement about obligations.,before rollout

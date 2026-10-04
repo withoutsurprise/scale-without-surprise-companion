@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-labelledby="title description">
+<title id="title">The same intelligence can help or hurt</title><desc id="description">Two constructed outcomes share a 10000 requests/s baseline and a 12000 adjusted forecast. Actual demand is 12800 when rollout proceeds and 10200 in the delayed-launch alternative.</desc>
+<rect width="1000" height="620" fill="white"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#111">
+<text x="50.0" y="52.0" font-size="32" text-anchor="start" font-weight="bold">The same intelligence can help or hurt</text>
+<text x="50.0" y="91.0" font-size="26" text-anchor="start" font-weight="normal">Constructed outcomes; requests per second</text>
+<line x1="100.0" y1="435.0" x2="950.0" y2="435.0" stroke="#d2d2d2" stroke-width="1"/>
+<text x="87.0" y="444.0" font-size="26" text-anchor="end" font-weight="normal">0k</text>
+<line x1="100.0" y1="341.7" x2="950.0" y2="341.7" stroke="#d2d2d2" stroke-width="1"/>
+<text x="87.0" y="350.7" font-size="26" text-anchor="end" font-weight="normal">5k</text>
+<line x1="100.0" y1="248.3" x2="950.0" y2="248.3" stroke="#d2d2d2" stroke-width="1"/>
+<text x="87.0" y="257.3" font-size="26" text-anchor="end" font-weight="normal">10k</text>
+<line x1="100.0" y1="155.0" x2="950.0" y2="155.0" stroke="#d2d2d2" stroke-width="1"/>
+<text x="87.0" y="164.0" font-size="26" text-anchor="end" font-weight="normal">15k</text>
+<text x="295.0" y="134.0" font-size="28" text-anchor="middle" font-weight="bold">Rollout proceeds</text>
+<text x="755.0" y="134.0" font-size="28" text-anchor="middle" font-weight="bold">Rollout delayed</text>
+<rect x="142" y="248.3" width="66" height="186.7" fill="#efefef" stroke="#222" stroke-width="2"/>
+<text x="175.0" y="236.3" font-size="26" text-anchor="middle" font-weight="normal">10,000</text>
+<text x="175.0" y="477.0" font-size="26" text-anchor="middle" font-weight="normal">Baseline</text>
+<rect x="257" y="211.0" width="66" height="224.0" fill="#999" stroke="#222" stroke-width="2"/>
+<text x="290.0" y="199.0" font-size="26" text-anchor="middle" font-weight="normal">12,000</text>
+<text x="290.0" y="477.0" font-size="26" text-anchor="middle" font-weight="normal">Adjusted</text>
+<rect x="372" y="196.1" width="66" height="238.9" fill="#222" stroke="#222" stroke-width="2"/>
+<text x="405.0" y="184.1" font-size="26" text-anchor="middle" font-weight="normal">12,800</text>
+<text x="405.0" y="477.0" font-size="26" text-anchor="middle" font-weight="normal">Actual</text>
+<rect x="602" y="248.3" width="66" height="186.7" fill="#efefef" stroke="#222" stroke-width="2"/>
+<text x="635.0" y="236.3" font-size="26" text-anchor="middle" font-weight="normal">10,000</text>
+<text x="635.0" y="477.0" font-size="26" text-anchor="middle" font-weight="normal">Baseline</text>
+<rect x="717" y="211.0" width="66" height="224.0" fill="#999" stroke="#222" stroke-width="2"/>
+<text x="750.0" y="199.0" font-size="26" text-anchor="middle" font-weight="normal">12,000</text>
+<text x="750.0" y="477.0" font-size="26" text-anchor="middle" font-weight="normal">Adjusted</text>
+<rect x="832" y="244.6" width="66" height="190.4" fill="#222" stroke="#222" stroke-width="2"/>
+<text x="865.0" y="232.6" font-size="26" text-anchor="middle" font-weight="normal">10,200</text>
+<text x="865.0" y="477.0" font-size="26" text-anchor="middle" font-weight="normal">Actual</text>
+<text x="295.0" y="534.0" font-size="27" text-anchor="middle" font-weight="normal">Absolute error: 2,800 to 800</text>
+<text x="755.0" y="534.0" font-size="27" text-anchor="middle" font-weight="normal">Absolute error: 200 to 1,800</text>
+<text x="500.0" y="588.0" font-size="26" text-anchor="middle" font-weight="normal">Alternative histories, not a measured success rate.</text>
+</g></svg>

@@ -1,0 +1,3532 @@
+{
+  "description": "Constructed teaching inputs, not an employer portfolio, forecast, or product benchmark.",
+  "as_of": "2026-06-28",
+  "peak_date": "2026-07-06",
+  "workloads": [
+    {
+      "id": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "business_owner": "Product lead",
+      "technical_owner": "Web operations lead",
+      "treatment": "individual",
+      "quality": "p95 latency <= 200 ms and errors <= 0.1% at the stated request mix",
+      "failure_scope": "one of the modeled independent groups"
+    },
+    {
+      "id": "batch-service",
+      "pool": "web-workers",
+      "unit": "workers",
+      "business_owner": "Batch product owner",
+      "technical_owner": "Batch operations lead",
+      "treatment": "individual",
+      "quality": "agreed deferral and catch-up plan required"
+    },
+    {
+      "id": "long-tail-platform",
+      "pool": "tail-shared-pool",
+      "unit": "tested work units/interval",
+      "business_owner": "Application platform owner",
+      "technical_owner": "Platform operations lead",
+      "treatment": "cohorts",
+      "quality": "separate illustrative resource pool; do not sum with requests/s"
+    },
+    {
+      "id": "ai-assistant",
+      "pool": "external-model-api",
+      "unit": "tokens/minute",
+      "business_owner": "AI product lead",
+      "technical_owner": "AI platform lead",
+      "treatment": "temporary exception",
+      "quality": "accepted outcomes plus rate and latency constraints"
+    },
+    {
+      "id": "retrieval-index",
+      "pool": "qualified-index-workers",
+      "unit": "records/minute",
+      "business_owner": "Search product lead",
+      "technical_owner": "Search operations lead",
+      "treatment": "individual",
+      "quality": "30-minute rebuild deadline; 20 minutes available for compute"
+    },
+    {
+      "id": "transaction-data",
+      "pool": "stateful-data-services",
+      "unit": "multiple; not aggregated",
+      "business_owner": "Transaction product lead",
+      "technical_owner": "Database specialists",
+      "treatment": "individual",
+      "quality": "capacity is unresolved until service, maintenance, and recovery evidence is supplied"
+    }
+  ],
+  "web_assumptions": {
+    "pool": "web-workers",
+    "unit": "requests/s",
+    "tested_requests_per_worker_second": 250,
+    "measurement_status": "fixture assumption at all modeled configurations; no actual benchmark was run",
+    "groups": [
+      16,
+      16,
+      16,
+      16
+    ],
+    "transfer_per_group": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "transfer_ready_days": 2,
+    "new_group_workers": 16,
+    "new_supply_ready_days": 42,
+    "delayed_supply_ready_days": 70,
+    "price_schedule": [
+      {
+        "effective_from": "2026-01-01",
+        "usd_per_worker_day": "40.00"
+      }
+    ],
+    "billing_period_days": 30,
+    "transfer_days": 30,
+    "already_paid_batch_workers": 8,
+    "transfer_opportunity_cost": "Unpriced: batch completion is delayed; owner must approve a catch-up plan. No cash saving or free capacity is claimed.",
+    "residual_risks": [
+      "changed request mix",
+      "sub-minute bursts",
+      "loss beyond one independent group",
+      "downstream data capacity not validated by worker arithmetic",
+      "supply arrival is an estimate"
+    ]
+  },
+  "observation_definition": {
+    "start": "2026-03-09",
+    "weeks": 16,
+    "weekday_peak_rps": [
+      10000,
+      9600,
+      9400,
+      9200,
+      9000,
+      7000,
+      6500
+    ],
+    "weekly_offsets_rps": [
+      -700,
+      -620,
+      -660,
+      -540,
+      -500,
+      -570,
+      -430,
+      -370,
+      -390,
+      -280,
+      -200,
+      -220,
+      -140,
+      -90,
+      -60,
+      0
+    ],
+    "timezone": "UTC",
+    "peak_window_seconds": 60,
+    "definition": "Daily maximum one-minute mean offered requests/s, no rejected or queued requests in the historical fixture. This cannot bound sub-minute bursts."
+  },
+  "baseline": {
+    "origin": "2026-06-28",
+    "target": "2026-07-06",
+    "horizon_days": 8,
+    "workload": "web-service",
+    "pool": "web-workers",
+    "unit": "requests/s",
+    "method": "seasonal_naive",
+    "estimate": 10000.0,
+    "evidence_dates": [
+      "2026-06-22"
+    ],
+    "evidence_available_on": [
+      "2026-06-22"
+    ],
+    "uncertainty": "point estimate only; no calibrated prediction interval"
+  },
+  "method_comparison": [
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-06",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 10000.0,
+      "evidence_dates": [
+        "2026-06-22"
+      ],
+      "evidence_available_on": [
+        "2026-06-22"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-06",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9927.5,
+      "evidence_dates": [
+        "2026-06-22",
+        "2026-06-15",
+        "2026-06-08",
+        "2026-06-01"
+      ],
+      "evidence_available_on": [
+        "2026-06-22",
+        "2026-06-15",
+        "2026-06-08",
+        "2026-06-01"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    }
+  ],
+  "stage": {
+    "origin": "2026-06-28",
+    "target": "2026-07-06",
+    "horizon_days": 8,
+    "workload": "web-service",
+    "pool": "web-workers",
+    "unit": "requests/s",
+    "method": "seasonal_naive",
+    "estimate": 12000.0,
+    "evidence_dates": [
+      "2026-06-22"
+    ],
+    "evidence_available_on": [
+      "2026-06-22"
+    ],
+    "uncertainty": "constructed event scenario, not a probability-weighted forecast",
+    "scenario": "stage",
+    "baseline": 10000.0,
+    "events": [
+      {
+        "id": "E-ROLLOUT",
+        "revision": 1,
+        "gross_increment": 2000.0,
+        "already_in_baseline": 0.0,
+        "net_increment": 2000.0,
+        "owner": "Product lead",
+        "review_by": "2026-06-30",
+        "review_due_before_target": true,
+        "evidence_known_at": "2026-06-25"
+      }
+    ]
+  },
+  "full": {
+    "origin": "2026-06-28",
+    "target": "2026-07-06",
+    "horizon_days": 8,
+    "workload": "web-service",
+    "pool": "web-workers",
+    "unit": "requests/s",
+    "method": "seasonal_naive",
+    "estimate": 14000.0,
+    "evidence_dates": [
+      "2026-06-22"
+    ],
+    "evidence_available_on": [
+      "2026-06-22"
+    ],
+    "uncertainty": "constructed event scenario, not a probability-weighted forecast",
+    "scenario": "full",
+    "baseline": 10000.0,
+    "events": [
+      {
+        "id": "E-ROLLOUT",
+        "revision": 1,
+        "gross_increment": 4000.0,
+        "already_in_baseline": 0.0,
+        "net_increment": 4000.0,
+        "owner": "Product lead",
+        "review_by": "2026-06-30",
+        "review_due_before_target": true,
+        "evidence_known_at": "2026-06-25"
+      }
+    ]
+  },
+  "backtest_summary": [
+    {
+      "method": "seasonal_naive",
+      "horizon_days": 1,
+      "count": 12,
+      "bias": 45.0,
+      "mae": 63.333333333333336,
+      "rmse": 72.11102550927978,
+      "unit": "requests/s"
+    },
+    {
+      "method": "seasonal_naive",
+      "horizon_days": 7,
+      "count": 12,
+      "bias": 45.0,
+      "mae": 63.333333333333336,
+      "rmse": 72.11102550927978,
+      "unit": "requests/s"
+    },
+    {
+      "method": "seasonal_naive",
+      "horizon_days": 8,
+      "count": 11,
+      "bias": 89.0909090909091,
+      "mae": 94.54545454545455,
+      "rmse": 108.7950533634854,
+      "unit": "requests/s"
+    },
+    {
+      "method": "seasonal_naive",
+      "horizon_days": 14,
+      "count": 11,
+      "bias": 89.0909090909091,
+      "mae": 94.54545454545455,
+      "rmse": 108.7950533634854,
+      "unit": "requests/s"
+    },
+    {
+      "method": "seasonal_naive",
+      "horizon_days": 42,
+      "count": 7,
+      "bias": 298.57142857142856,
+      "mae": 298.57142857142856,
+      "rmse": 299.97618953129313,
+      "unit": "requests/s"
+    },
+    {
+      "method": "weekday_mean_4",
+      "horizon_days": 1,
+      "count": 12,
+      "bias": 116.25,
+      "mae": 116.25,
+      "rmse": 123.14879211750312,
+      "unit": "requests/s"
+    },
+    {
+      "method": "weekday_mean_4",
+      "horizon_days": 7,
+      "count": 12,
+      "bias": 116.25,
+      "mae": 116.25,
+      "rmse": 123.14879211750312,
+      "unit": "requests/s"
+    },
+    {
+      "method": "weekday_mean_4",
+      "horizon_days": 8,
+      "count": 11,
+      "bias": 160.6818181818182,
+      "mae": 160.6818181818182,
+      "rmse": 166.550906768635,
+      "unit": "requests/s"
+    },
+    {
+      "method": "weekday_mean_4",
+      "horizon_days": 14,
+      "count": 11,
+      "bias": 160.6818181818182,
+      "mae": 160.6818181818182,
+      "rmse": 166.550906768635,
+      "unit": "requests/s"
+    },
+    {
+      "method": "weekday_mean_4",
+      "horizon_days": 42,
+      "count": 7,
+      "bias": 367.5,
+      "mae": 367.5,
+      "rmse": 367.71859388085653,
+      "unit": "requests/s"
+    }
+  ],
+  "backtests": [
+    {
+      "origin": "2026-04-05",
+      "target": "2026-04-06",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9460.0,
+      "evidence_dates": [
+        "2026-03-30"
+      ],
+      "evidence_available_on": [
+        "2026-03-30"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9500.0,
+      "error_actual_minus_forecast": 40.0
+    },
+    {
+      "origin": "2026-04-05",
+      "target": "2026-04-06",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9370.0,
+      "evidence_dates": [
+        "2026-03-30",
+        "2026-03-23",
+        "2026-03-16",
+        "2026-03-09"
+      ],
+      "evidence_available_on": [
+        "2026-03-30",
+        "2026-03-23",
+        "2026-03-16",
+        "2026-03-09"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9500.0,
+      "error_actual_minus_forecast": 130.0
+    },
+    {
+      "origin": "2026-04-05",
+      "target": "2026-04-12",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 5960.0,
+      "evidence_dates": [
+        "2026-04-05"
+      ],
+      "evidence_available_on": [
+        "2026-04-05"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6000.0,
+      "error_actual_minus_forecast": 40.0
+    },
+    {
+      "origin": "2026-04-05",
+      "target": "2026-04-12",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5870.0,
+      "evidence_dates": [
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22",
+        "2026-03-15"
+      ],
+      "evidence_available_on": [
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22",
+        "2026-03-15"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6000.0,
+      "error_actual_minus_forecast": 130.0
+    },
+    {
+      "origin": "2026-04-05",
+      "target": "2026-04-13",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9460.0,
+      "evidence_dates": [
+        "2026-03-30"
+      ],
+      "evidence_available_on": [
+        "2026-03-30"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9430.0,
+      "error_actual_minus_forecast": -30.0
+    },
+    {
+      "origin": "2026-04-05",
+      "target": "2026-04-13",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9370.0,
+      "evidence_dates": [
+        "2026-03-30",
+        "2026-03-23",
+        "2026-03-16",
+        "2026-03-09"
+      ],
+      "evidence_available_on": [
+        "2026-03-30",
+        "2026-03-23",
+        "2026-03-16",
+        "2026-03-09"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9430.0,
+      "error_actual_minus_forecast": 60.0
+    },
+    {
+      "origin": "2026-04-05",
+      "target": "2026-04-19",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 5960.0,
+      "evidence_dates": [
+        "2026-04-05"
+      ],
+      "evidence_available_on": [
+        "2026-04-05"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 5930.0,
+      "error_actual_minus_forecast": -30.0
+    },
+    {
+      "origin": "2026-04-05",
+      "target": "2026-04-19",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5870.0,
+      "evidence_dates": [
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22",
+        "2026-03-15"
+      ],
+      "evidence_available_on": [
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22",
+        "2026-03-15"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 5930.0,
+      "error_actual_minus_forecast": 60.0
+    },
+    {
+      "origin": "2026-04-05",
+      "target": "2026-05-17",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 5960.0,
+      "evidence_dates": [
+        "2026-04-05"
+      ],
+      "evidence_available_on": [
+        "2026-04-05"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6220.0,
+      "error_actual_minus_forecast": 260.0
+    },
+    {
+      "origin": "2026-04-05",
+      "target": "2026-05-17",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5870.0,
+      "evidence_dates": [
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22",
+        "2026-03-15"
+      ],
+      "evidence_available_on": [
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22",
+        "2026-03-15"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6220.0,
+      "error_actual_minus_forecast": 350.0
+    },
+    {
+      "origin": "2026-04-12",
+      "target": "2026-04-13",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9500.0,
+      "evidence_dates": [
+        "2026-04-06"
+      ],
+      "evidence_available_on": [
+        "2026-04-06"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9430.0,
+      "error_actual_minus_forecast": -70.0
+    },
+    {
+      "origin": "2026-04-12",
+      "target": "2026-04-13",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9420.0,
+      "evidence_dates": [
+        "2026-04-06",
+        "2026-03-30",
+        "2026-03-23",
+        "2026-03-16"
+      ],
+      "evidence_available_on": [
+        "2026-04-06",
+        "2026-03-30",
+        "2026-03-23",
+        "2026-03-16"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9430.0,
+      "error_actual_minus_forecast": 10.0
+    },
+    {
+      "origin": "2026-04-12",
+      "target": "2026-04-19",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6000.0,
+      "evidence_dates": [
+        "2026-04-12"
+      ],
+      "evidence_available_on": [
+        "2026-04-12"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 5930.0,
+      "error_actual_minus_forecast": -70.0
+    },
+    {
+      "origin": "2026-04-12",
+      "target": "2026-04-19",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5920.0,
+      "evidence_dates": [
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22"
+      ],
+      "evidence_available_on": [
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 5930.0,
+      "error_actual_minus_forecast": 10.0
+    },
+    {
+      "origin": "2026-04-12",
+      "target": "2026-04-20",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9500.0,
+      "evidence_dates": [
+        "2026-04-06"
+      ],
+      "evidence_available_on": [
+        "2026-04-06"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9570.0,
+      "error_actual_minus_forecast": 70.0
+    },
+    {
+      "origin": "2026-04-12",
+      "target": "2026-04-20",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9420.0,
+      "evidence_dates": [
+        "2026-04-06",
+        "2026-03-30",
+        "2026-03-23",
+        "2026-03-16"
+      ],
+      "evidence_available_on": [
+        "2026-04-06",
+        "2026-03-30",
+        "2026-03-23",
+        "2026-03-16"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9570.0,
+      "error_actual_minus_forecast": 150.0
+    },
+    {
+      "origin": "2026-04-12",
+      "target": "2026-04-26",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6000.0,
+      "evidence_dates": [
+        "2026-04-12"
+      ],
+      "evidence_available_on": [
+        "2026-04-12"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6070.0,
+      "error_actual_minus_forecast": 70.0
+    },
+    {
+      "origin": "2026-04-12",
+      "target": "2026-04-26",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5920.0,
+      "evidence_dates": [
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22"
+      ],
+      "evidence_available_on": [
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6070.0,
+      "error_actual_minus_forecast": 150.0
+    },
+    {
+      "origin": "2026-04-12",
+      "target": "2026-05-24",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6000.0,
+      "evidence_dates": [
+        "2026-04-12"
+      ],
+      "evidence_available_on": [
+        "2026-04-12"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6300.0,
+      "error_actual_minus_forecast": 300.0
+    },
+    {
+      "origin": "2026-04-12",
+      "target": "2026-05-24",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5920.0,
+      "evidence_dates": [
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22"
+      ],
+      "evidence_available_on": [
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29",
+        "2026-03-22"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6300.0,
+      "error_actual_minus_forecast": 380.0
+    },
+    {
+      "origin": "2026-04-19",
+      "target": "2026-04-20",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9430.0,
+      "evidence_dates": [
+        "2026-04-13"
+      ],
+      "evidence_available_on": [
+        "2026-04-13"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9570.0,
+      "error_actual_minus_forecast": 140.0
+    },
+    {
+      "origin": "2026-04-19",
+      "target": "2026-04-20",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9432.5,
+      "evidence_dates": [
+        "2026-04-13",
+        "2026-04-06",
+        "2026-03-30",
+        "2026-03-23"
+      ],
+      "evidence_available_on": [
+        "2026-04-13",
+        "2026-04-06",
+        "2026-03-30",
+        "2026-03-23"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9570.0,
+      "error_actual_minus_forecast": 137.5
+    },
+    {
+      "origin": "2026-04-19",
+      "target": "2026-04-26",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 5930.0,
+      "evidence_dates": [
+        "2026-04-19"
+      ],
+      "evidence_available_on": [
+        "2026-04-19"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6070.0,
+      "error_actual_minus_forecast": 140.0
+    },
+    {
+      "origin": "2026-04-19",
+      "target": "2026-04-26",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5932.5,
+      "evidence_dates": [
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29"
+      ],
+      "evidence_available_on": [
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6070.0,
+      "error_actual_minus_forecast": 137.5
+    },
+    {
+      "origin": "2026-04-19",
+      "target": "2026-04-27",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9430.0,
+      "evidence_dates": [
+        "2026-04-13"
+      ],
+      "evidence_available_on": [
+        "2026-04-13"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9630.0,
+      "error_actual_minus_forecast": 200.0
+    },
+    {
+      "origin": "2026-04-19",
+      "target": "2026-04-27",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9432.5,
+      "evidence_dates": [
+        "2026-04-13",
+        "2026-04-06",
+        "2026-03-30",
+        "2026-03-23"
+      ],
+      "evidence_available_on": [
+        "2026-04-13",
+        "2026-04-06",
+        "2026-03-30",
+        "2026-03-23"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9630.0,
+      "error_actual_minus_forecast": 197.5
+    },
+    {
+      "origin": "2026-04-19",
+      "target": "2026-05-03",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 5930.0,
+      "evidence_dates": [
+        "2026-04-19"
+      ],
+      "evidence_available_on": [
+        "2026-04-19"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6130.0,
+      "error_actual_minus_forecast": 200.0
+    },
+    {
+      "origin": "2026-04-19",
+      "target": "2026-05-03",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5932.5,
+      "evidence_dates": [
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29"
+      ],
+      "evidence_available_on": [
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6130.0,
+      "error_actual_minus_forecast": 197.5
+    },
+    {
+      "origin": "2026-04-19",
+      "target": "2026-05-31",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 5930.0,
+      "evidence_dates": [
+        "2026-04-19"
+      ],
+      "evidence_available_on": [
+        "2026-04-19"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6280.0,
+      "error_actual_minus_forecast": 350.0
+    },
+    {
+      "origin": "2026-04-19",
+      "target": "2026-05-31",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5932.5,
+      "evidence_dates": [
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29"
+      ],
+      "evidence_available_on": [
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05",
+        "2026-03-29"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6280.0,
+      "error_actual_minus_forecast": 347.5
+    },
+    {
+      "origin": "2026-04-26",
+      "target": "2026-04-27",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9570.0,
+      "evidence_dates": [
+        "2026-04-20"
+      ],
+      "evidence_available_on": [
+        "2026-04-20"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9630.0,
+      "error_actual_minus_forecast": 60.0
+    },
+    {
+      "origin": "2026-04-26",
+      "target": "2026-04-27",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9490.0,
+      "evidence_dates": [
+        "2026-04-20",
+        "2026-04-13",
+        "2026-04-06",
+        "2026-03-30"
+      ],
+      "evidence_available_on": [
+        "2026-04-20",
+        "2026-04-13",
+        "2026-04-06",
+        "2026-03-30"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9630.0,
+      "error_actual_minus_forecast": 140.0
+    },
+    {
+      "origin": "2026-04-26",
+      "target": "2026-05-03",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6070.0,
+      "evidence_dates": [
+        "2026-04-26"
+      ],
+      "evidence_available_on": [
+        "2026-04-26"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6130.0,
+      "error_actual_minus_forecast": 60.0
+    },
+    {
+      "origin": "2026-04-26",
+      "target": "2026-05-03",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5990.0,
+      "evidence_dates": [
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05"
+      ],
+      "evidence_available_on": [
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6130.0,
+      "error_actual_minus_forecast": 140.0
+    },
+    {
+      "origin": "2026-04-26",
+      "target": "2026-05-04",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9570.0,
+      "evidence_dates": [
+        "2026-04-20"
+      ],
+      "evidence_available_on": [
+        "2026-04-20"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9610.0,
+      "error_actual_minus_forecast": 40.0
+    },
+    {
+      "origin": "2026-04-26",
+      "target": "2026-05-04",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9490.0,
+      "evidence_dates": [
+        "2026-04-20",
+        "2026-04-13",
+        "2026-04-06",
+        "2026-03-30"
+      ],
+      "evidence_available_on": [
+        "2026-04-20",
+        "2026-04-13",
+        "2026-04-06",
+        "2026-03-30"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9610.0,
+      "error_actual_minus_forecast": 120.0
+    },
+    {
+      "origin": "2026-04-26",
+      "target": "2026-05-10",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6070.0,
+      "evidence_dates": [
+        "2026-04-26"
+      ],
+      "evidence_available_on": [
+        "2026-04-26"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6110.0,
+      "error_actual_minus_forecast": 40.0
+    },
+    {
+      "origin": "2026-04-26",
+      "target": "2026-05-10",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5990.0,
+      "evidence_dates": [
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05"
+      ],
+      "evidence_available_on": [
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6110.0,
+      "error_actual_minus_forecast": 120.0
+    },
+    {
+      "origin": "2026-04-26",
+      "target": "2026-06-07",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6070.0,
+      "evidence_dates": [
+        "2026-04-26"
+      ],
+      "evidence_available_on": [
+        "2026-04-26"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6360.0,
+      "error_actual_minus_forecast": 290.0
+    },
+    {
+      "origin": "2026-04-26",
+      "target": "2026-06-07",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 5990.0,
+      "evidence_dates": [
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05"
+      ],
+      "evidence_available_on": [
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12",
+        "2026-04-05"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6360.0,
+      "error_actual_minus_forecast": 370.0
+    },
+    {
+      "origin": "2026-05-03",
+      "target": "2026-05-04",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9630.0,
+      "evidence_dates": [
+        "2026-04-27"
+      ],
+      "evidence_available_on": [
+        "2026-04-27"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9610.0,
+      "error_actual_minus_forecast": -20.0
+    },
+    {
+      "origin": "2026-05-03",
+      "target": "2026-05-04",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9532.5,
+      "evidence_dates": [
+        "2026-04-27",
+        "2026-04-20",
+        "2026-04-13",
+        "2026-04-06"
+      ],
+      "evidence_available_on": [
+        "2026-04-27",
+        "2026-04-20",
+        "2026-04-13",
+        "2026-04-06"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9610.0,
+      "error_actual_minus_forecast": 77.5
+    },
+    {
+      "origin": "2026-05-03",
+      "target": "2026-05-10",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6130.0,
+      "evidence_dates": [
+        "2026-05-03"
+      ],
+      "evidence_available_on": [
+        "2026-05-03"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6110.0,
+      "error_actual_minus_forecast": -20.0
+    },
+    {
+      "origin": "2026-05-03",
+      "target": "2026-05-10",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6032.5,
+      "evidence_dates": [
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12"
+      ],
+      "evidence_available_on": [
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6110.0,
+      "error_actual_minus_forecast": 77.5
+    },
+    {
+      "origin": "2026-05-03",
+      "target": "2026-05-11",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9630.0,
+      "evidence_dates": [
+        "2026-04-27"
+      ],
+      "evidence_available_on": [
+        "2026-04-27"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9720.0,
+      "error_actual_minus_forecast": 90.0
+    },
+    {
+      "origin": "2026-05-03",
+      "target": "2026-05-11",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9532.5,
+      "evidence_dates": [
+        "2026-04-27",
+        "2026-04-20",
+        "2026-04-13",
+        "2026-04-06"
+      ],
+      "evidence_available_on": [
+        "2026-04-27",
+        "2026-04-20",
+        "2026-04-13",
+        "2026-04-06"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9720.0,
+      "error_actual_minus_forecast": 187.5
+    },
+    {
+      "origin": "2026-05-03",
+      "target": "2026-05-17",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6130.0,
+      "evidence_dates": [
+        "2026-05-03"
+      ],
+      "evidence_available_on": [
+        "2026-05-03"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6220.0,
+      "error_actual_minus_forecast": 90.0
+    },
+    {
+      "origin": "2026-05-03",
+      "target": "2026-05-17",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6032.5,
+      "evidence_dates": [
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12"
+      ],
+      "evidence_available_on": [
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6220.0,
+      "error_actual_minus_forecast": 187.5
+    },
+    {
+      "origin": "2026-05-03",
+      "target": "2026-06-14",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6130.0,
+      "evidence_dates": [
+        "2026-05-03"
+      ],
+      "evidence_available_on": [
+        "2026-05-03"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6410.0,
+      "error_actual_minus_forecast": 280.0
+    },
+    {
+      "origin": "2026-05-03",
+      "target": "2026-06-14",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6032.5,
+      "evidence_dates": [
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12"
+      ],
+      "evidence_available_on": [
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19",
+        "2026-04-12"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6410.0,
+      "error_actual_minus_forecast": 377.5
+    },
+    {
+      "origin": "2026-05-10",
+      "target": "2026-05-11",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9610.0,
+      "evidence_dates": [
+        "2026-05-04"
+      ],
+      "evidence_available_on": [
+        "2026-05-04"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9720.0,
+      "error_actual_minus_forecast": 110.0
+    },
+    {
+      "origin": "2026-05-10",
+      "target": "2026-05-11",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9560.0,
+      "evidence_dates": [
+        "2026-05-04",
+        "2026-04-27",
+        "2026-04-20",
+        "2026-04-13"
+      ],
+      "evidence_available_on": [
+        "2026-05-04",
+        "2026-04-27",
+        "2026-04-20",
+        "2026-04-13"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9720.0,
+      "error_actual_minus_forecast": 160.0
+    },
+    {
+      "origin": "2026-05-10",
+      "target": "2026-05-17",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6110.0,
+      "evidence_dates": [
+        "2026-05-10"
+      ],
+      "evidence_available_on": [
+        "2026-05-10"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6220.0,
+      "error_actual_minus_forecast": 110.0
+    },
+    {
+      "origin": "2026-05-10",
+      "target": "2026-05-17",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6060.0,
+      "evidence_dates": [
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19"
+      ],
+      "evidence_available_on": [
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6220.0,
+      "error_actual_minus_forecast": 160.0
+    },
+    {
+      "origin": "2026-05-10",
+      "target": "2026-05-18",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9610.0,
+      "evidence_dates": [
+        "2026-05-04"
+      ],
+      "evidence_available_on": [
+        "2026-05-04"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9800.0,
+      "error_actual_minus_forecast": 190.0
+    },
+    {
+      "origin": "2026-05-10",
+      "target": "2026-05-18",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9560.0,
+      "evidence_dates": [
+        "2026-05-04",
+        "2026-04-27",
+        "2026-04-20",
+        "2026-04-13"
+      ],
+      "evidence_available_on": [
+        "2026-05-04",
+        "2026-04-27",
+        "2026-04-20",
+        "2026-04-13"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9800.0,
+      "error_actual_minus_forecast": 240.0
+    },
+    {
+      "origin": "2026-05-10",
+      "target": "2026-05-24",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6110.0,
+      "evidence_dates": [
+        "2026-05-10"
+      ],
+      "evidence_available_on": [
+        "2026-05-10"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6300.0,
+      "error_actual_minus_forecast": 190.0
+    },
+    {
+      "origin": "2026-05-10",
+      "target": "2026-05-24",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6060.0,
+      "evidence_dates": [
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19"
+      ],
+      "evidence_available_on": [
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6300.0,
+      "error_actual_minus_forecast": 240.0
+    },
+    {
+      "origin": "2026-05-10",
+      "target": "2026-06-21",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6110.0,
+      "evidence_dates": [
+        "2026-05-10"
+      ],
+      "evidence_available_on": [
+        "2026-05-10"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6440.0,
+      "error_actual_minus_forecast": 330.0
+    },
+    {
+      "origin": "2026-05-10",
+      "target": "2026-06-21",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6060.0,
+      "evidence_dates": [
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19"
+      ],
+      "evidence_available_on": [
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26",
+        "2026-04-19"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6440.0,
+      "error_actual_minus_forecast": 380.0
+    },
+    {
+      "origin": "2026-05-17",
+      "target": "2026-05-18",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9720.0,
+      "evidence_dates": [
+        "2026-05-11"
+      ],
+      "evidence_available_on": [
+        "2026-05-11"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9800.0,
+      "error_actual_minus_forecast": 80.0
+    },
+    {
+      "origin": "2026-05-17",
+      "target": "2026-05-18",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9632.5,
+      "evidence_dates": [
+        "2026-05-11",
+        "2026-05-04",
+        "2026-04-27",
+        "2026-04-20"
+      ],
+      "evidence_available_on": [
+        "2026-05-11",
+        "2026-05-04",
+        "2026-04-27",
+        "2026-04-20"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9800.0,
+      "error_actual_minus_forecast": 167.5
+    },
+    {
+      "origin": "2026-05-17",
+      "target": "2026-05-24",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6220.0,
+      "evidence_dates": [
+        "2026-05-17"
+      ],
+      "evidence_available_on": [
+        "2026-05-17"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6300.0,
+      "error_actual_minus_forecast": 80.0
+    },
+    {
+      "origin": "2026-05-17",
+      "target": "2026-05-24",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6132.5,
+      "evidence_dates": [
+        "2026-05-17",
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26"
+      ],
+      "evidence_available_on": [
+        "2026-05-17",
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6300.0,
+      "error_actual_minus_forecast": 167.5
+    },
+    {
+      "origin": "2026-05-17",
+      "target": "2026-05-25",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9720.0,
+      "evidence_dates": [
+        "2026-05-11"
+      ],
+      "evidence_available_on": [
+        "2026-05-11"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9780.0,
+      "error_actual_minus_forecast": 60.0
+    },
+    {
+      "origin": "2026-05-17",
+      "target": "2026-05-25",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9632.5,
+      "evidence_dates": [
+        "2026-05-11",
+        "2026-05-04",
+        "2026-04-27",
+        "2026-04-20"
+      ],
+      "evidence_available_on": [
+        "2026-05-11",
+        "2026-05-04",
+        "2026-04-27",
+        "2026-04-20"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9780.0,
+      "error_actual_minus_forecast": 147.5
+    },
+    {
+      "origin": "2026-05-17",
+      "target": "2026-05-31",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6220.0,
+      "evidence_dates": [
+        "2026-05-17"
+      ],
+      "evidence_available_on": [
+        "2026-05-17"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6280.0,
+      "error_actual_minus_forecast": 60.0
+    },
+    {
+      "origin": "2026-05-17",
+      "target": "2026-05-31",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6132.5,
+      "evidence_dates": [
+        "2026-05-17",
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26"
+      ],
+      "evidence_available_on": [
+        "2026-05-17",
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6280.0,
+      "error_actual_minus_forecast": 147.5
+    },
+    {
+      "origin": "2026-05-17",
+      "target": "2026-06-28",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6220.0,
+      "evidence_dates": [
+        "2026-05-17"
+      ],
+      "evidence_available_on": [
+        "2026-05-17"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6500.0,
+      "error_actual_minus_forecast": 280.0
+    },
+    {
+      "origin": "2026-05-17",
+      "target": "2026-06-28",
+      "horizon_days": 42,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6132.5,
+      "evidence_dates": [
+        "2026-05-17",
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26"
+      ],
+      "evidence_available_on": [
+        "2026-05-17",
+        "2026-05-10",
+        "2026-05-03",
+        "2026-04-26"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6500.0,
+      "error_actual_minus_forecast": 367.5
+    },
+    {
+      "origin": "2026-05-24",
+      "target": "2026-05-25",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9800.0,
+      "evidence_dates": [
+        "2026-05-18"
+      ],
+      "evidence_available_on": [
+        "2026-05-18"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9780.0,
+      "error_actual_minus_forecast": -20.0
+    },
+    {
+      "origin": "2026-05-24",
+      "target": "2026-05-25",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9690.0,
+      "evidence_dates": [
+        "2026-05-18",
+        "2026-05-11",
+        "2026-05-04",
+        "2026-04-27"
+      ],
+      "evidence_available_on": [
+        "2026-05-18",
+        "2026-05-11",
+        "2026-05-04",
+        "2026-04-27"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9780.0,
+      "error_actual_minus_forecast": 90.0
+    },
+    {
+      "origin": "2026-05-24",
+      "target": "2026-05-31",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6300.0,
+      "evidence_dates": [
+        "2026-05-24"
+      ],
+      "evidence_available_on": [
+        "2026-05-24"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6280.0,
+      "error_actual_minus_forecast": -20.0
+    },
+    {
+      "origin": "2026-05-24",
+      "target": "2026-05-31",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6190.0,
+      "evidence_dates": [
+        "2026-05-24",
+        "2026-05-17",
+        "2026-05-10",
+        "2026-05-03"
+      ],
+      "evidence_available_on": [
+        "2026-05-24",
+        "2026-05-17",
+        "2026-05-10",
+        "2026-05-03"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6280.0,
+      "error_actual_minus_forecast": 90.0
+    },
+    {
+      "origin": "2026-05-24",
+      "target": "2026-06-01",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9800.0,
+      "evidence_dates": [
+        "2026-05-18"
+      ],
+      "evidence_available_on": [
+        "2026-05-18"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9860.0,
+      "error_actual_minus_forecast": 60.0
+    },
+    {
+      "origin": "2026-05-24",
+      "target": "2026-06-01",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9690.0,
+      "evidence_dates": [
+        "2026-05-18",
+        "2026-05-11",
+        "2026-05-04",
+        "2026-04-27"
+      ],
+      "evidence_available_on": [
+        "2026-05-18",
+        "2026-05-11",
+        "2026-05-04",
+        "2026-04-27"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9860.0,
+      "error_actual_minus_forecast": 170.0
+    },
+    {
+      "origin": "2026-05-24",
+      "target": "2026-06-07",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6300.0,
+      "evidence_dates": [
+        "2026-05-24"
+      ],
+      "evidence_available_on": [
+        "2026-05-24"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6360.0,
+      "error_actual_minus_forecast": 60.0
+    },
+    {
+      "origin": "2026-05-24",
+      "target": "2026-06-07",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6190.0,
+      "evidence_dates": [
+        "2026-05-24",
+        "2026-05-17",
+        "2026-05-10",
+        "2026-05-03"
+      ],
+      "evidence_available_on": [
+        "2026-05-24",
+        "2026-05-17",
+        "2026-05-10",
+        "2026-05-03"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6360.0,
+      "error_actual_minus_forecast": 170.0
+    },
+    {
+      "origin": "2026-05-31",
+      "target": "2026-06-01",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9780.0,
+      "evidence_dates": [
+        "2026-05-25"
+      ],
+      "evidence_available_on": [
+        "2026-05-25"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9860.0,
+      "error_actual_minus_forecast": 80.0
+    },
+    {
+      "origin": "2026-05-31",
+      "target": "2026-06-01",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9727.5,
+      "evidence_dates": [
+        "2026-05-25",
+        "2026-05-18",
+        "2026-05-11",
+        "2026-05-04"
+      ],
+      "evidence_available_on": [
+        "2026-05-25",
+        "2026-05-18",
+        "2026-05-11",
+        "2026-05-04"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9860.0,
+      "error_actual_minus_forecast": 132.5
+    },
+    {
+      "origin": "2026-05-31",
+      "target": "2026-06-07",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6280.0,
+      "evidence_dates": [
+        "2026-05-31"
+      ],
+      "evidence_available_on": [
+        "2026-05-31"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6360.0,
+      "error_actual_minus_forecast": 80.0
+    },
+    {
+      "origin": "2026-05-31",
+      "target": "2026-06-07",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6227.5,
+      "evidence_dates": [
+        "2026-05-31",
+        "2026-05-24",
+        "2026-05-17",
+        "2026-05-10"
+      ],
+      "evidence_available_on": [
+        "2026-05-31",
+        "2026-05-24",
+        "2026-05-17",
+        "2026-05-10"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6360.0,
+      "error_actual_minus_forecast": 132.5
+    },
+    {
+      "origin": "2026-05-31",
+      "target": "2026-06-08",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9780.0,
+      "evidence_dates": [
+        "2026-05-25"
+      ],
+      "evidence_available_on": [
+        "2026-05-25"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9910.0,
+      "error_actual_minus_forecast": 130.0
+    },
+    {
+      "origin": "2026-05-31",
+      "target": "2026-06-08",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9727.5,
+      "evidence_dates": [
+        "2026-05-25",
+        "2026-05-18",
+        "2026-05-11",
+        "2026-05-04"
+      ],
+      "evidence_available_on": [
+        "2026-05-25",
+        "2026-05-18",
+        "2026-05-11",
+        "2026-05-04"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9910.0,
+      "error_actual_minus_forecast": 182.5
+    },
+    {
+      "origin": "2026-05-31",
+      "target": "2026-06-14",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6280.0,
+      "evidence_dates": [
+        "2026-05-31"
+      ],
+      "evidence_available_on": [
+        "2026-05-31"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6410.0,
+      "error_actual_minus_forecast": 130.0
+    },
+    {
+      "origin": "2026-05-31",
+      "target": "2026-06-14",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6227.5,
+      "evidence_dates": [
+        "2026-05-31",
+        "2026-05-24",
+        "2026-05-17",
+        "2026-05-10"
+      ],
+      "evidence_available_on": [
+        "2026-05-31",
+        "2026-05-24",
+        "2026-05-17",
+        "2026-05-10"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6410.0,
+      "error_actual_minus_forecast": 182.5
+    },
+    {
+      "origin": "2026-06-07",
+      "target": "2026-06-08",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9860.0,
+      "evidence_dates": [
+        "2026-06-01"
+      ],
+      "evidence_available_on": [
+        "2026-06-01"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9910.0,
+      "error_actual_minus_forecast": 50.0
+    },
+    {
+      "origin": "2026-06-07",
+      "target": "2026-06-08",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9790.0,
+      "evidence_dates": [
+        "2026-06-01",
+        "2026-05-25",
+        "2026-05-18",
+        "2026-05-11"
+      ],
+      "evidence_available_on": [
+        "2026-06-01",
+        "2026-05-25",
+        "2026-05-18",
+        "2026-05-11"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9910.0,
+      "error_actual_minus_forecast": 120.0
+    },
+    {
+      "origin": "2026-06-07",
+      "target": "2026-06-14",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6360.0,
+      "evidence_dates": [
+        "2026-06-07"
+      ],
+      "evidence_available_on": [
+        "2026-06-07"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6410.0,
+      "error_actual_minus_forecast": 50.0
+    },
+    {
+      "origin": "2026-06-07",
+      "target": "2026-06-14",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6290.0,
+      "evidence_dates": [
+        "2026-06-07",
+        "2026-05-31",
+        "2026-05-24",
+        "2026-05-17"
+      ],
+      "evidence_available_on": [
+        "2026-06-07",
+        "2026-05-31",
+        "2026-05-24",
+        "2026-05-17"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6410.0,
+      "error_actual_minus_forecast": 120.0
+    },
+    {
+      "origin": "2026-06-07",
+      "target": "2026-06-15",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9860.0,
+      "evidence_dates": [
+        "2026-06-01"
+      ],
+      "evidence_available_on": [
+        "2026-06-01"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9940.0,
+      "error_actual_minus_forecast": 80.0
+    },
+    {
+      "origin": "2026-06-07",
+      "target": "2026-06-15",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9790.0,
+      "evidence_dates": [
+        "2026-06-01",
+        "2026-05-25",
+        "2026-05-18",
+        "2026-05-11"
+      ],
+      "evidence_available_on": [
+        "2026-06-01",
+        "2026-05-25",
+        "2026-05-18",
+        "2026-05-11"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9940.0,
+      "error_actual_minus_forecast": 150.0
+    },
+    {
+      "origin": "2026-06-07",
+      "target": "2026-06-21",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6360.0,
+      "evidence_dates": [
+        "2026-06-07"
+      ],
+      "evidence_available_on": [
+        "2026-06-07"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6440.0,
+      "error_actual_minus_forecast": 80.0
+    },
+    {
+      "origin": "2026-06-07",
+      "target": "2026-06-21",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6290.0,
+      "evidence_dates": [
+        "2026-06-07",
+        "2026-05-31",
+        "2026-05-24",
+        "2026-05-17"
+      ],
+      "evidence_available_on": [
+        "2026-06-07",
+        "2026-05-31",
+        "2026-05-24",
+        "2026-05-17"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6440.0,
+      "error_actual_minus_forecast": 150.0
+    },
+    {
+      "origin": "2026-06-14",
+      "target": "2026-06-15",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9910.0,
+      "evidence_dates": [
+        "2026-06-08"
+      ],
+      "evidence_available_on": [
+        "2026-06-08"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9940.0,
+      "error_actual_minus_forecast": 30.0
+    },
+    {
+      "origin": "2026-06-14",
+      "target": "2026-06-15",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9837.5,
+      "evidence_dates": [
+        "2026-06-08",
+        "2026-06-01",
+        "2026-05-25",
+        "2026-05-18"
+      ],
+      "evidence_available_on": [
+        "2026-06-08",
+        "2026-06-01",
+        "2026-05-25",
+        "2026-05-18"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 9940.0,
+      "error_actual_minus_forecast": 102.5
+    },
+    {
+      "origin": "2026-06-14",
+      "target": "2026-06-21",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6410.0,
+      "evidence_dates": [
+        "2026-06-14"
+      ],
+      "evidence_available_on": [
+        "2026-06-14"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6440.0,
+      "error_actual_minus_forecast": 30.0
+    },
+    {
+      "origin": "2026-06-14",
+      "target": "2026-06-21",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6337.5,
+      "evidence_dates": [
+        "2026-06-14",
+        "2026-06-07",
+        "2026-05-31",
+        "2026-05-24"
+      ],
+      "evidence_available_on": [
+        "2026-06-14",
+        "2026-06-07",
+        "2026-05-31",
+        "2026-05-24"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6440.0,
+      "error_actual_minus_forecast": 102.5
+    },
+    {
+      "origin": "2026-06-14",
+      "target": "2026-06-22",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9910.0,
+      "evidence_dates": [
+        "2026-06-08"
+      ],
+      "evidence_available_on": [
+        "2026-06-08"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 10000.0,
+      "error_actual_minus_forecast": 90.0
+    },
+    {
+      "origin": "2026-06-14",
+      "target": "2026-06-22",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9837.5,
+      "evidence_dates": [
+        "2026-06-08",
+        "2026-06-01",
+        "2026-05-25",
+        "2026-05-18"
+      ],
+      "evidence_available_on": [
+        "2026-06-08",
+        "2026-06-01",
+        "2026-05-25",
+        "2026-05-18"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 10000.0,
+      "error_actual_minus_forecast": 162.5
+    },
+    {
+      "origin": "2026-06-14",
+      "target": "2026-06-28",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6410.0,
+      "evidence_dates": [
+        "2026-06-14"
+      ],
+      "evidence_available_on": [
+        "2026-06-14"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6500.0,
+      "error_actual_minus_forecast": 90.0
+    },
+    {
+      "origin": "2026-06-14",
+      "target": "2026-06-28",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6337.5,
+      "evidence_dates": [
+        "2026-06-14",
+        "2026-06-07",
+        "2026-05-31",
+        "2026-05-24"
+      ],
+      "evidence_available_on": [
+        "2026-06-14",
+        "2026-06-07",
+        "2026-05-31",
+        "2026-05-24"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6500.0,
+      "error_actual_minus_forecast": 162.5
+    },
+    {
+      "origin": "2026-06-21",
+      "target": "2026-06-22",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9940.0,
+      "evidence_dates": [
+        "2026-06-15"
+      ],
+      "evidence_available_on": [
+        "2026-06-15"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 10000.0,
+      "error_actual_minus_forecast": 60.0
+    },
+    {
+      "origin": "2026-06-21",
+      "target": "2026-06-22",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9872.5,
+      "evidence_dates": [
+        "2026-06-15",
+        "2026-06-08",
+        "2026-06-01",
+        "2026-05-25"
+      ],
+      "evidence_available_on": [
+        "2026-06-15",
+        "2026-06-08",
+        "2026-06-01",
+        "2026-05-25"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 10000.0,
+      "error_actual_minus_forecast": 127.5
+    },
+    {
+      "origin": "2026-06-21",
+      "target": "2026-06-28",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6440.0,
+      "evidence_dates": [
+        "2026-06-21"
+      ],
+      "evidence_available_on": [
+        "2026-06-21"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6500.0,
+      "error_actual_minus_forecast": 60.0
+    },
+    {
+      "origin": "2026-06-21",
+      "target": "2026-06-28",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6372.5,
+      "evidence_dates": [
+        "2026-06-21",
+        "2026-06-14",
+        "2026-06-07",
+        "2026-05-31"
+      ],
+      "evidence_available_on": [
+        "2026-06-21",
+        "2026-06-14",
+        "2026-06-07",
+        "2026-05-31"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval",
+      "actual": 6500.0,
+      "error_actual_minus_forecast": 127.5
+    }
+  ],
+  "forecasts": [
+    {
+      "origin": "2026-06-28",
+      "target": "2026-06-29",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 10000.0,
+      "evidence_dates": [
+        "2026-06-22"
+      ],
+      "evidence_available_on": [
+        "2026-06-22"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-06-29",
+      "horizon_days": 1,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9927.5,
+      "evidence_dates": [
+        "2026-06-22",
+        "2026-06-15",
+        "2026-06-08",
+        "2026-06-01"
+      ],
+      "evidence_available_on": [
+        "2026-06-22",
+        "2026-06-15",
+        "2026-06-08",
+        "2026-06-01"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-06-30",
+      "horizon_days": 2,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9600.0,
+      "evidence_dates": [
+        "2026-06-23"
+      ],
+      "evidence_available_on": [
+        "2026-06-23"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-06-30",
+      "horizon_days": 2,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9527.5,
+      "evidence_dates": [
+        "2026-06-23",
+        "2026-06-16",
+        "2026-06-09",
+        "2026-06-02"
+      ],
+      "evidence_available_on": [
+        "2026-06-23",
+        "2026-06-16",
+        "2026-06-09",
+        "2026-06-02"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-01",
+      "horizon_days": 3,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9400.0,
+      "evidence_dates": [
+        "2026-06-24"
+      ],
+      "evidence_available_on": [
+        "2026-06-24"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-01",
+      "horizon_days": 3,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9327.5,
+      "evidence_dates": [
+        "2026-06-24",
+        "2026-06-17",
+        "2026-06-10",
+        "2026-06-03"
+      ],
+      "evidence_available_on": [
+        "2026-06-24",
+        "2026-06-17",
+        "2026-06-10",
+        "2026-06-03"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-02",
+      "horizon_days": 4,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9200.0,
+      "evidence_dates": [
+        "2026-06-25"
+      ],
+      "evidence_available_on": [
+        "2026-06-25"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-02",
+      "horizon_days": 4,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9127.5,
+      "evidence_dates": [
+        "2026-06-25",
+        "2026-06-18",
+        "2026-06-11",
+        "2026-06-04"
+      ],
+      "evidence_available_on": [
+        "2026-06-25",
+        "2026-06-18",
+        "2026-06-11",
+        "2026-06-04"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-03",
+      "horizon_days": 5,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9000.0,
+      "evidence_dates": [
+        "2026-06-26"
+      ],
+      "evidence_available_on": [
+        "2026-06-26"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-03",
+      "horizon_days": 5,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 8927.5,
+      "evidence_dates": [
+        "2026-06-26",
+        "2026-06-19",
+        "2026-06-12",
+        "2026-06-05"
+      ],
+      "evidence_available_on": [
+        "2026-06-26",
+        "2026-06-19",
+        "2026-06-12",
+        "2026-06-05"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-04",
+      "horizon_days": 6,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 7000.0,
+      "evidence_dates": [
+        "2026-06-27"
+      ],
+      "evidence_available_on": [
+        "2026-06-27"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-04",
+      "horizon_days": 6,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6927.5,
+      "evidence_dates": [
+        "2026-06-27",
+        "2026-06-20",
+        "2026-06-13",
+        "2026-06-06"
+      ],
+      "evidence_available_on": [
+        "2026-06-27",
+        "2026-06-20",
+        "2026-06-13",
+        "2026-06-06"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-05",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6500.0,
+      "evidence_dates": [
+        "2026-06-28"
+      ],
+      "evidence_available_on": [
+        "2026-06-28"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-05",
+      "horizon_days": 7,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6427.5,
+      "evidence_dates": [
+        "2026-06-28",
+        "2026-06-21",
+        "2026-06-14",
+        "2026-06-07"
+      ],
+      "evidence_available_on": [
+        "2026-06-28",
+        "2026-06-21",
+        "2026-06-14",
+        "2026-06-07"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-06",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 10000.0,
+      "evidence_dates": [
+        "2026-06-22"
+      ],
+      "evidence_available_on": [
+        "2026-06-22"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-06",
+      "horizon_days": 8,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9927.5,
+      "evidence_dates": [
+        "2026-06-22",
+        "2026-06-15",
+        "2026-06-08",
+        "2026-06-01"
+      ],
+      "evidence_available_on": [
+        "2026-06-22",
+        "2026-06-15",
+        "2026-06-08",
+        "2026-06-01"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-07",
+      "horizon_days": 9,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9600.0,
+      "evidence_dates": [
+        "2026-06-23"
+      ],
+      "evidence_available_on": [
+        "2026-06-23"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-07",
+      "horizon_days": 9,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9527.5,
+      "evidence_dates": [
+        "2026-06-23",
+        "2026-06-16",
+        "2026-06-09",
+        "2026-06-02"
+      ],
+      "evidence_available_on": [
+        "2026-06-23",
+        "2026-06-16",
+        "2026-06-09",
+        "2026-06-02"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-08",
+      "horizon_days": 10,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9400.0,
+      "evidence_dates": [
+        "2026-06-24"
+      ],
+      "evidence_available_on": [
+        "2026-06-24"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-08",
+      "horizon_days": 10,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9327.5,
+      "evidence_dates": [
+        "2026-06-24",
+        "2026-06-17",
+        "2026-06-10",
+        "2026-06-03"
+      ],
+      "evidence_available_on": [
+        "2026-06-24",
+        "2026-06-17",
+        "2026-06-10",
+        "2026-06-03"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-09",
+      "horizon_days": 11,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9200.0,
+      "evidence_dates": [
+        "2026-06-25"
+      ],
+      "evidence_available_on": [
+        "2026-06-25"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-09",
+      "horizon_days": 11,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 9127.5,
+      "evidence_dates": [
+        "2026-06-25",
+        "2026-06-18",
+        "2026-06-11",
+        "2026-06-04"
+      ],
+      "evidence_available_on": [
+        "2026-06-25",
+        "2026-06-18",
+        "2026-06-11",
+        "2026-06-04"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-10",
+      "horizon_days": 12,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 9000.0,
+      "evidence_dates": [
+        "2026-06-26"
+      ],
+      "evidence_available_on": [
+        "2026-06-26"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-10",
+      "horizon_days": 12,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 8927.5,
+      "evidence_dates": [
+        "2026-06-26",
+        "2026-06-19",
+        "2026-06-12",
+        "2026-06-05"
+      ],
+      "evidence_available_on": [
+        "2026-06-26",
+        "2026-06-19",
+        "2026-06-12",
+        "2026-06-05"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-11",
+      "horizon_days": 13,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 7000.0,
+      "evidence_dates": [
+        "2026-06-27"
+      ],
+      "evidence_available_on": [
+        "2026-06-27"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-11",
+      "horizon_days": 13,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6927.5,
+      "evidence_dates": [
+        "2026-06-27",
+        "2026-06-20",
+        "2026-06-13",
+        "2026-06-06"
+      ],
+      "evidence_available_on": [
+        "2026-06-27",
+        "2026-06-20",
+        "2026-06-13",
+        "2026-06-06"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-12",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "seasonal_naive",
+      "estimate": 6500.0,
+      "evidence_dates": [
+        "2026-06-28"
+      ],
+      "evidence_available_on": [
+        "2026-06-28"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    },
+    {
+      "origin": "2026-06-28",
+      "target": "2026-07-12",
+      "horizon_days": 14,
+      "workload": "web-service",
+      "pool": "web-workers",
+      "unit": "requests/s",
+      "method": "weekday_mean_4",
+      "estimate": 6427.5,
+      "evidence_dates": [
+        "2026-06-28",
+        "2026-06-21",
+        "2026-06-14",
+        "2026-06-07"
+      ],
+      "evidence_available_on": [
+        "2026-06-28",
+        "2026-06-21",
+        "2026-06-14",
+        "2026-06-07"
+      ],
+      "uncertainty": "point estimate only; no calibrated prediction interval"
+    }
+  ],
+  "supply_cases": [
+    {
+      "choice": "existing-stage",
+      "groups": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "workers": 64,
+      "normal_rps": 16000,
+      "lost_groups": 1,
+      "largest_loss_workers": 16,
+      "degraded_rps": 12000,
+      "demand_rps": 12000.0,
+      "degraded_headroom_rps": 0.0,
+      "passes_stated_capacity_arithmetic": true,
+      "ready_date_assumption": "2026-06-28",
+      "ready_by_launch_peak": true,
+      "available_until_exclusive": null,
+      "available_at_launch_peak": true,
+      "status": "current fixture supply"
+    },
+    {
+      "choice": "existing-full",
+      "groups": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "workers": 64,
+      "normal_rps": 16000,
+      "lost_groups": 1,
+      "largest_loss_workers": 16,
+      "degraded_rps": 12000,
+      "demand_rps": 14000.0,
+      "degraded_headroom_rps": -2000.0,
+      "passes_stated_capacity_arithmetic": false,
+      "ready_date_assumption": "2026-06-28",
+      "ready_by_launch_peak": true,
+      "available_until_exclusive": null,
+      "available_at_launch_peak": true,
+      "status": "full rollout without a batch transfer"
+    },
+    {
+      "choice": "transfer-stage",
+      "groups": [
+        18,
+        18,
+        18,
+        18
+      ],
+      "workers": 72,
+      "normal_rps": 18000,
+      "lost_groups": 1,
+      "largest_loss_workers": 18,
+      "degraded_rps": 13500,
+      "demand_rps": 12000.0,
+      "degraded_headroom_rps": 1500.0,
+      "passes_stated_capacity_arithmetic": true,
+      "ready_date_assumption": "2026-06-30",
+      "ready_by_launch_peak": true,
+      "available_until_exclusive": "2026-07-30",
+      "available_at_launch_peak": true,
+      "status": "requires batch agreement and qualification"
+    },
+    {
+      "choice": "transfer-full",
+      "groups": [
+        18,
+        18,
+        18,
+        18
+      ],
+      "workers": 72,
+      "normal_rps": 18000,
+      "lost_groups": 1,
+      "largest_loss_workers": 18,
+      "degraded_rps": 13500,
+      "demand_rps": 14000.0,
+      "degraded_headroom_rps": -500.0,
+      "passes_stated_capacity_arithmetic": false,
+      "ready_date_assumption": "2026-06-30",
+      "ready_by_launch_peak": true,
+      "available_until_exclusive": "2026-07-30",
+      "available_at_launch_peak": true,
+      "status": "full-rollout test under the temporary configuration"
+    },
+    {
+      "choice": "new-group-full",
+      "groups": [
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "workers": 80,
+      "normal_rps": 20000,
+      "lost_groups": 1,
+      "largest_loss_workers": 16,
+      "degraded_rps": 16000,
+      "demand_rps": 14000.0,
+      "degraded_headroom_rps": 2000.0,
+      "passes_stated_capacity_arithmetic": true,
+      "ready_date_assumption": "2026-08-09",
+      "ready_by_launch_peak": false,
+      "available_until_exclusive": null,
+      "available_at_launch_peak": false,
+      "status": "estimated arrival; return borrowed workers"
+    },
+    {
+      "choice": "delayed-new-group-full",
+      "groups": [
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "workers": 80,
+      "normal_rps": 20000,
+      "lost_groups": 1,
+      "largest_loss_workers": 16,
+      "degraded_rps": 16000,
+      "demand_rps": 14000.0,
+      "degraded_headroom_rps": 2000.0,
+      "passes_stated_capacity_arithmetic": true,
+      "ready_date_assumption": "2026-09-06",
+      "ready_by_launch_peak": false,
+      "available_until_exclusive": null,
+      "available_at_launch_peak": false,
+      "status": "alternative estimated arrival; not usable before then"
+    }
+  ],
+  "costs": {
+    "currency": "USD",
+    "all_amounts": "integer cents",
+    "period_days": 30,
+    "existing_web_per_day": 256000,
+    "existing_web_period": 7680000,
+    "existing_web_plus_batch_period": 8640000,
+    "transfer_attribution_web_increase": 960000,
+    "transfer_attribution_batch_decrease": -960000,
+    "transfer_enterprise_cash_increment": 0,
+    "new_workers_daily_quote": 64000,
+    "new_workers_period_quote": 1920000,
+    "new_workers_realized_cash_effect": "unknown until commercial terms and obligations are checked",
+    "batch_opportunity_cost": "Unpriced: batch completion is delayed; owner must approve a catch-up plan. No cash saving or free capacity is claimed.",
+    "transfer_agreement_expires": "2026-07-30",
+    "transfer_start_inclusive": "2026-06-30",
+    "transfer_end_exclusive": "2026-07-30",
+    "transfer_attribution_through_expected_supply": 1280000,
+    "transfer_attribution_through_delayed_supply": 2176000,
+    "gap_to_expected_supply_days": 10,
+    "gap_to_delayed_supply_days": 38
+  },
+  "decision": {
+    "id": "D-001",
+    "status": "constructed recommended decision, not an approval",
+    "choice": "Stage launch after the transfer is qualified; pursue a new independent group; preserve a delayed-supply alternative.",
+    "conditions": [
+      {
+        "owner": "Product lead",
+        "action": "Stage the rollout at the assumed 2000 additional requests/s and keep the ability to stop expansion.",
+        "due": "before rollout"
+      },
+      {
+        "owner": "Batch product owner",
+        "action": "Approve a bounded deferral and catch-up plan before transferring eight workers.",
+        "due": "before transfer"
+      },
+      {
+        "owner": "Web operations lead",
+        "action": "Qualify transferred capacity and failure behavior before treating it as available.",
+        "due": "before rollout"
+      },
+      {
+        "owner": "Budget owner",
+        "action": "Authorize the additional 640 dollars/day contingent on supply and actual commercial terms.",
+        "due": "before purchase commitment"
+      },
+      {
+        "owner": "Responsible business executive",
+        "action": "Accept residual exposure or change launch scope/deadline; resolve disagreement about obligations.",
+        "due": "before rollout"
+      }
+    ],
+    "review_triggers": [
+      "forecast or observed demand consumes the staged margin",
+      "request mix invalidates the tested rate",
+      "new supply slips beyond the transfer agreement",
+      "batch catch-up plan becomes infeasible",
+      "launch timing or scope changes"
+    ]
+  },
+  "retrospective_alternative_outcomes": [
+    {
+      "id": "staged-launch-observed",
+      "scenario": "stage",
+      "actual_peak_rps": 12800,
+      "interpretation": "compare the two preserved forecast errors; service capacity and supply readiness are separate tests",
+      "baseline_forecast": 10000.0,
+      "adjusted_forecast": 12000.0,
+      "baseline_error": 2800.0,
+      "adjusted_error": 800.0,
+      "absolute_error_improvement": 2000.0,
+      "degraded_headroom_rps": 700
+    },
+    {
+      "id": "delayed-launch-countercase",
+      "scenario": "stage",
+      "actual_peak_rps": 10200,
+      "interpretation": "compare the two preserved forecast errors; service capacity and supply readiness are separate tests",
+      "baseline_forecast": 10000.0,
+      "adjusted_forecast": 12000.0,
+      "baseline_error": 200.0,
+      "adjusted_error": -1800.0,
+      "absolute_error_improvement": -1600.0,
+      "degraded_headroom_rps": 3300
+    }
+  ],
+  "tail": {
+    "pool": "tail-shared-pool",
+    "unit": "tested work units/interval",
+    "head_projects": 20,
+    "tail_projects": 1000,
+    "common_increase_per_project": 0.02,
+    "head_growth": 0.02,
+    "illustrative_pairwise_correlation": 0.05,
+    "baseline": 1000.0,
+    "head": 800,
+    "tail": 200.0,
+    "head_share": 0.8,
+    "head_project_share": 0.0196078431372549,
+    "supply": 1030,
+    "baseline_headroom": 30.0,
+    "common_tail_increase": 20.0,
+    "tail_only_headroom": 10.0,
+    "combined_demand": 1036.0,
+    "combined_headroom": -6.0,
+    "independent_error_sd": 1.5811388300841898,
+    "correlated_error_sd": 11.286053340295712,
+    "interpretation": "sensitivity arithmetic; not a fitted power law, estimated correlation, or probability interval"
+  },
+  "ai": {
+    "token_ledger": {
+      "pool": "external-model-api",
+      "input_tokens": 2400000000,
+      "output_tokens": 320000000,
+      "token_cost_cents": 1200000,
+      "full_cost_cents": 10000000,
+      "cost_per_accepted_task_usd": "1.25",
+      "required_input_tokens_per_minute": 2400000,
+      "input_limit_per_minute": 1800000,
+      "input_limit_gap_per_minute": -600000,
+      "price_status": "constructed rates; no provider prices or live calls"
+    },
+    "index_rebuild": {
+      "pool": "qualified-index-workers",
+      "required_workers": 30,
+      "records": 12000000,
+      "records_per_worker_minute": 20000,
+      "available_workers": 16,
+      "records_completed_in_window": 6400000,
+      "deadline_minutes": 30,
+      "compute_minutes": 20,
+      "measurement_status": "constructed tested rate; concurrent serving and data supply must qualify separately"
+    }
+  },
+  "residual_risks": [
+    "changed request mix",
+    "sub-minute bursts",
+    "loss beyond one independent group",
+    "downstream data capacity not validated by worker arithmetic",
+    "supply arrival is an estimate"
+  ],
+  "limitations": [
+    "Synthetic fixtures, not evidence about production behavior.",
+    "No calibrated probabilities or prediction intervals.",
+    "No inferred equivalence between resource pools.",
+    "No annual seasonality or calendar-holiday model from 16 weeks of history.",
+    "Only two fixed forecasting methods; no provider adapter or automated purchasing.",
+    "The displayed choice is a recommendation whose approvals and measurements remain conditions."
+  ]
+}

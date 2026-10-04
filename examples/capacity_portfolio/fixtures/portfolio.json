@@ -1,0 +1,60 @@
+{
+  "description": "Constructed teaching inputs, not an employer portfolio, forecast, or product benchmark.",
+  "as_of": "2026-06-28",
+  "peak_date": "2026-07-06",
+  "history": {
+    "start": "2026-03-09",
+    "weeks": 16,
+    "weekday_peak_rps": [10000, 9600, 9400, 9200, 9000, 7000, 6500],
+    "weekly_offsets_rps": [-700, -620, -660, -540, -500, -570, -430, -370, -390, -280, -200, -220, -140, -90, -60, 0],
+    "timezone": "UTC",
+    "peak_window_seconds": 60,
+    "definition": "Daily maximum one-minute mean offered requests/s, no rejected or queued requests in the historical fixture. This cannot bound sub-minute bursts."
+  },
+  "workloads": [
+    {"id": "web-service", "pool": "web-workers", "unit": "requests/s", "business_owner": "Product lead", "technical_owner": "Web operations lead", "treatment": "individual", "quality": "p95 latency <= 200 ms and errors <= 0.1% at the stated request mix", "failure_scope": "one of the modeled independent groups"},
+    {"id": "batch-service", "pool": "web-workers", "unit": "workers", "business_owner": "Batch product owner", "technical_owner": "Batch operations lead", "treatment": "individual", "quality": "agreed deferral and catch-up plan required"},
+    {"id": "long-tail-platform", "pool": "tail-shared-pool", "unit": "tested work units/interval", "business_owner": "Application platform owner", "technical_owner": "Platform operations lead", "treatment": "cohorts", "quality": "separate illustrative resource pool; do not sum with requests/s"},
+    {"id": "ai-assistant", "pool": "external-model-api", "unit": "tokens/minute", "business_owner": "AI product lead", "technical_owner": "AI platform lead", "treatment": "temporary exception", "quality": "accepted outcomes plus rate and latency constraints"},
+    {"id": "retrieval-index", "pool": "qualified-index-workers", "unit": "records/minute", "business_owner": "Search product lead", "technical_owner": "Search operations lead", "treatment": "individual", "quality": "30-minute rebuild deadline; 20 minutes available for compute"},
+    {"id": "transaction-data", "pool": "stateful-data-services", "unit": "multiple; not aggregated", "business_owner": "Transaction product lead", "technical_owner": "Database specialists", "treatment": "individual", "quality": "capacity is unresolved until service, maintenance, and recovery evidence is supplied"}
+  ],
+  "web": {
+    "pool": "web-workers",
+    "unit": "requests/s",
+    "tested_requests_per_worker_second": 250,
+    "measurement_status": "fixture assumption at all modeled configurations; no actual benchmark was run",
+    "groups": [16, 16, 16, 16],
+    "transfer_per_group": [2, 2, 2, 2],
+    "transfer_ready_days": 2,
+    "new_group_workers": 16,
+    "new_supply_ready_days": 42,
+    "delayed_supply_ready_days": 70,
+    "price_schedule": [{"effective_from": "2026-01-01", "usd_per_worker_day": "40.00"}],
+    "billing_period_days": 30,
+    "transfer_days": 30,
+    "already_paid_batch_workers": 8,
+    "transfer_opportunity_cost": "Unpriced: batch completion is delayed; owner must approve a catch-up plan. No cash saving or free capacity is claimed.",
+    "residual_risks": ["changed request mix", "sub-minute bursts", "loss beyond one independent group", "downstream data capacity not validated by worker arithmetic", "supply arrival is an estimate"]
+  },
+  "tail": {"head_projects": 20, "head_total": 800, "tail_projects": 1000, "per_tail_project": 0.2, "supply": 1030, "common_increase_per_project": 0.02, "head_growth": 0.02, "error_sigma": 0.05, "illustrative_pairwise_correlation": 0.05},
+  "ai": {"attempted_tasks": 100000, "calls_per_task": 4, "input_tokens_per_call": 6000, "output_tokens_per_call": 800, "usd_per_million_input": "3.00", "usd_per_million_output": "15.00", "accepted_tasks": 80000, "supporting_cost_usd": "20000.00", "model_access_subscription_usd": "68000.00", "busy_tasks_per_minute": 100, "input_token_limit_per_minute": 1800000},
+  "index_rebuild": {"records": 12000000, "records_per_worker_minute": 20000, "compute_minutes": 20, "deadline_minutes": 30, "available_qualified_workers": 16},
+  "decision": {
+    "id": "D-001",
+    "status": "constructed recommended decision, not an approval",
+    "choice": "Stage launch after the transfer is qualified; pursue a new independent group; preserve a delayed-supply alternative.",
+    "conditions": [
+      {"owner": "Product lead", "action": "Stage the rollout at the assumed 2000 additional requests/s and keep the ability to stop expansion.", "due": "before rollout"},
+      {"owner": "Batch product owner", "action": "Approve a bounded deferral and catch-up plan before transferring eight workers.", "due": "before transfer"},
+      {"owner": "Web operations lead", "action": "Qualify transferred capacity and failure behavior before treating it as available.", "due": "before rollout"},
+      {"owner": "Budget owner", "action": "Authorize the additional 640 dollars/day contingent on supply and actual commercial terms.", "due": "before purchase commitment"},
+      {"owner": "Responsible business executive", "action": "Accept residual exposure or change launch scope/deadline; resolve disagreement about obligations.", "due": "before rollout"}
+    ],
+    "review_triggers": ["forecast or observed demand consumes the staged margin", "request mix invalidates the tested rate", "new supply slips beyond the transfer agreement", "batch catch-up plan becomes infeasible", "launch timing or scope changes"]
+  },
+  "outcomes": [
+    {"id": "staged-launch-observed", "scenario": "stage", "actual_peak_rps": 12800, "interpretation": "intelligence improved this forecast, while leaving 700 requests/s of modeled degraded headroom"},
+    {"id": "delayed-launch-countercase", "scenario": "stage", "actual_peak_rps": 10200, "interpretation": "alternative constructed outcome: rollout delayed; the same intelligence adjustment worsened the forecast"}
+  ]
+}

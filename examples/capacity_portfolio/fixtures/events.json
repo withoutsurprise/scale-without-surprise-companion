@@ -1,0 +1,40 @@
+[
+  {
+    "id": "E-ROLLOUT",
+    "revision": 1,
+    "known_at": "2026-06-25",
+    "source": "Synthetic product launch discussion",
+    "owner": "Product lead",
+    "workload": "web-service",
+    "pool": "web-workers",
+    "unit": "requests/s",
+    "cause_id": "customer-rollout-01",
+    "starts": "2026-07-01",
+    "ends": "2026-08-31",
+    "review_by": "2026-06-30",
+    "valid_until": "2026-07-07",
+    "gross_increment": {"stage": 2000, "full": 4000},
+    "already_in_baseline": {"stage": 0, "full": 0},
+    "dependencies": ["rollout date holds", "test request mix remains applicable", "batch transfer qualified before expansion"],
+    "confidence": "scenario assumptions, not calibrated probabilities"
+  },
+  {
+    "id": "E-ROLLOUT",
+    "revision": 2,
+    "known_at": "2026-07-08",
+    "source": "Synthetic later product update; forbidden to the June 28 forecast",
+    "owner": "Product lead",
+    "workload": "web-service",
+    "pool": "web-workers",
+    "unit": "requests/s",
+    "cause_id": "customer-rollout-01",
+    "starts": "2026-07-01",
+    "ends": "2026-08-31",
+    "review_by": "2026-07-10",
+    "valid_until": "2026-07-14",
+    "gross_increment": {"stage": 2800, "full": 4500},
+    "already_in_baseline": {"stage": 0, "full": 0},
+    "dependencies": ["later evidence; do not rewrite the earlier forecast"],
+    "confidence": "revised scenario assumptions, not calibrated probabilities"
+  }
+]
